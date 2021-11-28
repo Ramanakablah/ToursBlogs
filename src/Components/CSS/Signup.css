@@ -1,0 +1,22 @@
+.Body{
+    width: 100vw;
+    height: 41.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image:url("https://cdn.pixabay.com/photo/2020/02/05/15/47/natural-4821583_960_720.png");
+    background-position: bottom;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.SignupBody{
+    width: 70%;
+    padding: 10px 20px;
+    z-index: 1;
+}
+#Label{
+    color: white;
+    font-weight: bold;
+    font-size: 17px;
+}

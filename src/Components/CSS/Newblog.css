@@ -1,0 +1,25 @@
+@media only screen and (max-width: 600px) {
+    .BlogHead img{
+        height: 50px;
+        width: 50px;
+    }
+  }
+ 
+.Bod{
+    content: " ";
+    background-image: linear-gradient(180deg,white,blue);
+}  
+
+.BlogHead{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+} 
+.BlogHead img{
+    margin: 5px;
+    height: 100px;
+    width: 100px;
+} 
+#blog {
+    width: 100%;
+}

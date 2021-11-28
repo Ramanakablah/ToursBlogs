@@ -1,0 +1,10 @@
+.BlogBody{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border-bottom: solid 2px orange;
+}
+.image img{
+    height: 300px;
+    width: 300px;
+}

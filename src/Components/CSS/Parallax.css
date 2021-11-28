@@ -1,0 +1,15 @@
+.box{
+    height: 300px;
+    width: 300px;
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    top: 50%;
+    border-radius: 50%;
+    background-color: blue;
+}
+.Bodyp{
+    height: 300vh;
+    width: 100vw;
+    background-image: linear-gradient(red,yellow,green,blue,maroon);
+}

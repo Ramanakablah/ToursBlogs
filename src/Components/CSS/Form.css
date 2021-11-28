@@ -1,0 +1,28 @@
+.formBody{
+    display: flex;
+    flex-direction: column-reverse;
+    background-image: url("https://cdn.pixabay.com/photo/2019/07/25/17/09/camp-4363073_960_720.png");
+    background-repeat: no-repeat;
+    background-position: bottom;
+    justify-content: center;
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+}
+.Sheet{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    padding: 0px 30px;
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+}
+.Sheet a{
+    font-size: 30px;
+}
+
+#Button{
+border: none;
+border-radius: 20px;
+}

@@ -1,0 +1,11 @@
+.useravatar img{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
+.User{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 10px;
+    background-image: linear-gradient(90deg, white,yellow ,orange,red);
+}

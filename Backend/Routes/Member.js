@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 const fetchuser = require("../Fetchuser/Fetchuser")
 const Token = "HaayeMeriDiwaliKhatamHoGyi"
 const multer = require("multer")
-const upload = require("../Multer/Upload")
+// const upload = require("../Multer/Upload")
 
 
 router.post("/auth", [
@@ -95,15 +95,30 @@ router.post("/login",[
     }
 })
 
-router.put("/avatar",fetchuser,upload.single("image"),async (req,res)=>{
+const image=""
+const Filestorage = multer.diskStorage({
+    destination:(req,file,Callback)=>{
+     Callback(null,"../public/images")
+    },
+   filename:(req,file,Callback)=>{
+     Callback(null, Date.now() + file.originalname)
+    }
+})
+
+const upload = multer({
+    storage:Filestorage
+})
+
+router.post("/avatar",fetchuser,upload.single("image"),async (req,res)=>{
     try { 
         const ent = await Member.findById(req.user.id)
         if(ent){
-            const img=req.file.filename;
+            console.log(req.file)
+            const img = req.file.filename;
             console.log(img);
             const newent = await Member.findByIdAndUpdate(req.user.id,{$set:{avatar:img}});
             const entj = await Member.findById(req.user.id)
-            res.json(newent + entj)
+            res.json(entj)
         }
         else{
             res.send("no such user exist")
@@ -129,6 +144,8 @@ router.put("/about",fetchuser,async(req,res)=>{
         const {about} = req.body
         const newent = await Member.findByIdAndUpdate(req.user.id,{$set:{about:about}});
         console.log(newent)
+        const ent= await Member.findById(req.user.id)
+        res.json(ent)
     } catch (error) {
         console.log(error)
         res.status(500).send("Internal server error")    
