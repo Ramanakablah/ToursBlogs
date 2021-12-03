@@ -10,6 +10,7 @@ import Blog from "./Components/JSX/Blog"
 import Profile from "./Components/JSX/Profile "
 import Signup from "./Components/JSX/Signup"
 import Blogcontext from "./Components/Context/Blogcontext";
+import Newblog from "./Components/JSX/Newblog";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
       <Route path="/login" element={<Login/>} />
       <Route path="/profile" element={<Profile/>} />
       <Route path="/blog" element={<Blog/>} />
+      <Route path="/add" element={<Newblog/>} />
       </Routes>
     </Router>
     </Blogcontext>

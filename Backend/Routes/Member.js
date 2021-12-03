@@ -93,11 +93,12 @@ router.post("/login",[
         res.status(500).json(error)
     }
 })
-router.post("/avatar",fetchuser,async (req,res)=>{
+router.post("/avatar",fetchuser, async (req,res)=>{
     try { 
         const ent = await Member.findById(req.user.id)
         if(ent){
-            const img = req.file.filename;
+            console.log("reached line number= 100")
+            const img =await req.file.filename;
             console.log(img);
             const newent = await Member.findByIdAndUpdate(req.user.id,{$set:{avatar:img}});
             const entj = await Member.findById(req.user.id)

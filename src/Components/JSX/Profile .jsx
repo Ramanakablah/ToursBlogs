@@ -9,7 +9,6 @@ const Profile = () => {
   const {avatar,about}= context
     const onchange=(e)=>{
     aboutyou = e.target.value; 
-    console.log(aboutyou)
     setabouts(aboutyou)           
     }
     const onclick=(e)=>{
@@ -32,17 +31,16 @@ const Profile = () => {
                         <div>
                             <form encType="multipart/form-data" action="/join/avatar" method="POST">
                             <input type="file" className="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" formcontrolname="image" />
-                            <button className="btn btn-primary" onClick={onclick}> Upload </button>
+                            <button className="btn btn-primary my-3" onClick={onclick}> Upload </button>
                             </form>
                         </div>
                     </div>
                     <div className="about">
-                        <form>
-                        <label htmlFor="ProfileAbout"> About you: </label>
-                        <textarea name="about" id="ProfileAbout" onChange={onchange}>
+                       <label htmlFor="ProfileAbout"> About you: </label>
+                        <textarea name="abouttext" id="ProfileAbout" onChange={onchange}>
                         </textarea>
                         <button className="btn btn-primary mx-2 my-2" onClick={Submitabout}> Submit </button>
-                        </form>
+
                     </div>
                 </div>
         </>

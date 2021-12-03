@@ -1,56 +1,39 @@
-import React from 'react'
+import React, { useState, useContext, useEffect, useRef } from 'react'
 import Entry from '../JSX/Entry'
 import "../CSS/Blog.css"
 import { Link } from 'react-router-dom'
+import Newcontext from '../Context/Createcontext'
 
 const Blog = () => {
+  const ref = useRef(null)
+  const refclose = useRef(null)
+  const [Blog, setBlog] = useState([])
+  const [edits, setedits] = useState({id:"",uexperience:"",ulocation:"",uplacename:""})
+  const context = useContext(Newcontext)
+  const { UsersBlog, Blogofuser, editblog } = context
 
-  const Blogs = [
-    {
-      "_id": "619bcf53753a21fb514ca107",
-      "user": "619bced9753a21fb514ca101",
-      "name": "Raman",
-      "image": "hello",
-      "blog": "It was a fun trip totally loved it",
-      "place": "Delhi, Gurugram",
-      "dateupload": "2021-11-22T17:11:47.347Z",
-      "datevisited": "2021-11-22T17:11:47.347Z",
-      "__v": 0
-    },
-    {
-      "_id": "619bcf67753a21fb514ca109",
-      "user": "619bced9753a21fb514ca101",
-      "name": "Raman",
-      "image": "hello",
-      "blog": "It was a fun trip totally loved it",
-      "place": "Rajasthan, Bangarh",
-      "dateupload": "2021-11-22T17:12:07.769Z",
-      "datevisited": "2021-11-22T17:12:07.769Z",
-      "__v": 0
-    },
-    {
-      "_id": "619bd0e5753a21fb514ca10b",
-      "user": "619bced9753a21fb514ca101",
-      "name": "Raman",
-      "image": "hello",
-      "blog": "Got Linked To Kurama",
-      "place": "Konoha, Kurukshetra",
-      "dateupload": "2021-11-22T17:18:29.254Z",
-      "datevisited": "2021-11-22T17:18:29.254Z",
-      "__v": 0
-    },
-    {
-      "_id": "619bd122753a21fb514ca10e",
-      "user": "619bced9753a21fb514ca101",
-      "name": "Raman",
-      "image": "hello",
-      "blog": "Learnet Sage Mode there",
-      "place": "Konoha,Mt.Myoboku",
-      "dateupload": "2021-11-22T17:19:30.167Z",
-      "datevisited": "2021-11-22T17:19:30.167Z",
-      "__v": 0
-    }
-  ]
+  useEffect(() => {
+    UsersBlog()
+  }, [])
+
+  const handleclick = () => {
+    UsersBlog();
+    console.log(Blogofuser)
+    setBlog(Blogofuser)
+    console.log(Blog)
+  }
+  const updation = (currentblog) => {
+    ref.current.click()
+    setedits({id:currentblog._id,uexperience:currentblog.blog,uplacename:currentblog.name,ulocation:currentblog.place})
+  }
+  const onchange=(e)=>{
+  setedits({...edits ,[e.target.name]:e.target.value})
+  }
+  const savechanges=()=>{
+    refclose.current.click()
+    console.log(edits)
+    editblog(edits.id,edits.uplacename,edits.uexperience,edits.ulocation)
+  }
 
   return (
     <>
@@ -67,10 +50,47 @@ const Blog = () => {
         <h1 className="mx-2 my-4">Blogs</h1>
         <Link to="/add" className="btn btn-primary mx-2"> Add New &#x2B; </Link>
         <hr />
+        <button className="btn btn-primary" onClick={handleclick}> See Your Blogs </button>
+
+        <button type="button" className="btn btn-primary d-none" ref={ref} data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Launch static backdrop modal
+        </button>
+
+        <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="staticBackdropLabel">Modal title</h5>
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div className="modal-body">
+                <form>
+                  <div className="mb-3">
+                    <label htmlFor="exampleInputEmail1" className="form-label">Place</label>
+                    <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value={edits.uplacename} onChange={onchange} name="uplacename"/>
+                    </div>
+                  <div className="mb-3">
+                    <label htmlFor="exampleInputEmail1" className="form-label">Location</label>
+                    <input type="text" className="form-control" id="exampleInput" aria-describedby="emailHelp" value={edits.ulocation} onChange={onchange} name="ulocation"/>
+                    </div>
+                  <div className="mb-3">
+                    <label htmlFor="exampleInputEmail1" className="form-label">Experience</label>
+                       <textarea name="uexperience" onChange={onchange} value={edits.uexperience} cols="30" rows="10"></textarea>       
+                  </div>
+                </form>
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" ref={refclose}>Close</button>
+                <button type="button" className="btn btn-primary" onClick={savechanges}>Save Changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="container">
-          {Blogs.map((blog) => {
+          {Blog?.map((blog) => {
             return <div key={blog._id}>
-              <Entry name={blog.name} address={blog.place} blog={blog.blog} />
+              <Entry blog={blog} updation={updation} />
             </div>
           })}
         </div>
