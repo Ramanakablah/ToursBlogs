@@ -6,8 +6,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const fetchuser = require("../Fetchuser/Fetchuser")
 const Token = "HaayeMeriDiwaliKhatamHoGyi"
-const multer = require("multer")
-// const upload = require("../Multer/Upload")
+
 
 
 router.post("/auth", [
@@ -94,26 +93,10 @@ router.post("/login",[
         res.status(500).json(error)
     }
 })
-
-const image=""
-const Filestorage = multer.diskStorage({
-    destination:(req,file,Callback)=>{
-     Callback(null,"../public/images")
-    },
-   filename:(req,file,Callback)=>{
-     Callback(null, Date.now() + file.originalname)
-    }
-})
-
-const upload = multer({
-    storage:Filestorage
-})
-
-router.post("/avatar",fetchuser,upload.single("image"),async (req,res)=>{
+router.post("/avatar",fetchuser,async (req,res)=>{
     try { 
         const ent = await Member.findById(req.user.id)
         if(ent){
-            console.log(req.file)
             const img = req.file.filename;
             console.log(img);
             const newent = await Member.findByIdAndUpdate(req.user.id,{$set:{avatar:img}});

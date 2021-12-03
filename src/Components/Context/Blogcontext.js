@@ -24,7 +24,7 @@ const Blogcontext = (props) => {
         method: 'POST', 
         headers: {
           'auth-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjFhMjVkM2IxYzc2NDUyNWYzNGFhOTNjIn0sImlhdCI6MTYzODAzMDY1MX0.aTNT-OF9KTvCQqK6QKKboXxA7pqDsbxOOSk5XGBd5fA"
-  }, body: JSON.stringify(File)
+  }, body: JSON.stringify()
       });
       const answer = await response.json()
       console.log(answer)   
@@ -46,7 +46,7 @@ const Blogcontext = (props) => {
       }  
    }
 
-   const about = async ()=>{ 
+   const about = async (about)=>{ 
     const response = await fetch(`${url}/join/about`, {
         method: 'PUT', 
         headers: {

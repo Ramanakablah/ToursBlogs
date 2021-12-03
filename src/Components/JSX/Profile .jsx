@@ -1,22 +1,25 @@
-import React,{useContext} from 'react'
+import React,{useContext,useState} from 'react'
 import "../CSS/Profile.css"
 import Createcontext from "../Context/Createcontext"
 
 const Profile = () => {
   let aboutyou=null
   const context = useContext(Createcontext)
+  const [abouts, setabouts] = useState("")
   const {avatar,about}= context
     const onchange=(e)=>{
     aboutyou = e.target.value; 
-    console.log(aboutyou)           
+    console.log(aboutyou)
+    setabouts(aboutyou)           
     }
     const onclick=(e)=>{
         e.preventDefault();
         avatar();
     }
-    const Submitabout=()=>{
-        console.log(aboutyou)
-        about(aboutyou)
+    const Submitabout=(e)=>{
+        e.preventDefault();
+        console.log(abouts)
+        about(abouts)
     }
     return (
         <>
@@ -28,7 +31,7 @@ const Profile = () => {
                         </div>
                         <div>
                             <form encType="multipart/form-data" action="/join/avatar" method="POST">
-                            <input type="file" className="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="image" />
+                            <input type="file" className="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" formcontrolname="image" />
                             <button className="btn btn-primary" onClick={onclick}> Upload </button>
                             </form>
                         </div>
