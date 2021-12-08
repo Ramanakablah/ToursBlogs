@@ -3,9 +3,14 @@
     background-color: #281641;
     display: flex;
     width: 100vw;
+    position: sticky;
+    top: 0px;
     align-items: center;
     justify-content: space-around;
     font-size: 18px;
+}
+.Nav-head{
+    padding: 10px;
 }
 .nav .list{
     display: flex;
@@ -19,6 +24,13 @@
     list-style: none;
     font-size: 14px;
     margin: 10px 14px;
+    border-radius: 7px;
+    padding: 5px 10px;
+}
+.listitem:hover{
+    font-weight: 400;
+    background-color: hsl(265, 61%, 21%);
+    cursor: pointer;
 }
 .Userbutton{
    font-size: 14px;
@@ -28,4 +40,69 @@
     color: white;
     text-decoration: none;
     font-size: 16px;
+}
+.Hamburger{
+    display: none;
+    padding: 10px;
+    cursor: pointer;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+.ham-menu{
+    opacity: 0.8;
+    display: none;
+    z-index:  2;
+    position: fixed;
+    right: 0px;
+    height: 100vh;
+    width: 240px;
+    background-color: #281641;
+    color: white;
+}
+.ham-menu a{
+    text-decoration: none;
+    color: white;
+}
+.ham-list{
+    list-style: none;
+    padding: 0;
+}
+.ham-top{
+    font-size: 24px;
+    font-weight: 500;
+    padding-bottom: 10px;
+}
+
+.ham-top,.ham-center,.ham-bottom{
+    margin: 5px 10px;
+    border-bottom: solid 1px white;
+    margin-bottom: 10px;
+}
+.ham-item:hover{
+    font-weight: 400;
+    background-color: hsl(265, 61%, 21%);
+    cursor: pointer;
+}
+.ham-bottom{
+    border: none;
+}
+.ham-top .icon{
+    margin: 5px;
+}
+.ham-item{
+ padding: 10px;
+ border-radius: 7px;
+}
+@media only screen and (max-width:800px)
+{
+    .List-text{
+    display: none;
+    }
+    .nav .btn{
+        display: none;
+    }
+    .Hamburger{
+        display: inline;
+    }
 }

@@ -1,11 +1,14 @@
 import React,{useContext,useState} from 'react'
 import "../CSS/Profile.css"
+import { useNavigate } from 'react-router'
 import Createcontext from "../Context/Createcontext"
 
 const Profile = () => {
+    const navigate = useNavigate()
   let aboutyou=null
   const context = useContext(Createcontext)
   const [abouts, setabouts] = useState("")
+  const [warn, setwarn] = useState(false)
   const {avatar,about}= context
     const onchange=(e)=>{
     aboutyou = e.target.value; 
@@ -16,9 +19,19 @@ const Profile = () => {
         avatar();
     }
     const Submitabout=(e)=>{
-        e.preventDefault();
-        console.log(abouts)
-        about(abouts)
+        if(abouts.length !==0)
+        {
+            e.preventDefault();
+            console.log(abouts)
+            about(abouts)
+            navigate("/")
+        }
+        else{
+            setwarn(true)
+            setTimeout(() => {
+                setwarn(false)
+            },6000);
+        }
     }
     return (
         <>
@@ -39,8 +52,8 @@ const Profile = () => {
                        <label htmlFor="ProfileAbout"> About you: </label>
                         <textarea name="abouttext" id="ProfileAbout" onChange={onchange}>
                         </textarea>
+                        {warn && <div className="warning">* Enter something about you</div>}
                         <button className="btn btn-primary mx-2 my-2" onClick={Submitabout}> Submit </button>
-
                     </div>
                 </div>
         </>

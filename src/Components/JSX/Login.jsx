@@ -35,15 +35,12 @@ const Login = () => {
                         <button className="btn btn-primary" onClick={loging}>Submit</button>
                     </form>
                     <div className="form-helpers">
-                        <Link className="buttontext" to="/signup">Create New User</Link>
+                        <Link className="btn btn-primary my-4" to="/signup">Create New User</Link>
                     </div>
                 </div>
                 <div className="loginface">
-                    <div>
+                    <div className="login-boat">
                     <img src="https://cdn.pixabay.com/photo/2013/07/13/11/54/boat-158936_640.png" alt="Sailing boat" className="Boat"/>
-                    </div>
-                    <div className="helpers">
-                        <Link className="buttontext" to="/signup">Create New User</Link>
                     </div>
                 </div>
             </div>

@@ -34,7 +34,7 @@ router.post("/auth", [
                 contact: req.body.mob,
                 email: email,
                 password: newpasskey
-            })     
+            })
             const data = {
                 user: {
                     id: Info.id
@@ -50,61 +50,60 @@ router.post("/auth", [
 
 })
 
-router.post("/login",[
+router.post("/login", [
     body('email').isEmail(),
     body('password').isLength({ min: 4 })
-], async (req,res)=>{
+], async (req, res) => {
     try {
-        let flag =false;
+        let flag = false;
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
-        const {password,email} = req.body
-        const Memb = await Member.findOne({email}) 
-        console.log(Memb.password);
-         if(!Memb){
-             res.send("Enter correct credentils")
-         }
-         const Passerverif = await bcrypt.compare(password,Memb.password)
-         if(!Passerverif){
-            res.status(400).send("Access-Denied")
-         }
-         if(Passerverif){
-          flag=true;
-         }
+        const { password, email } = req.body
+        const Memb = await Member.findOne({ email })
+        if (!Memb) {
+            res.send("Enter correct credentils")
+        }
+        const Passerverif = await bcrypt.compare(password, Memb.password)
 
-         const data = {
-            user: {
-                id: Memb.id
+        if (!Passerverif) {
+            res.status(400).send("Access-Denied")
+        }
+        else {
+            flag = true;
+            const data = {
+                user: {
+                    id: Memb.id
+                }
             }
+            console.log(data)
+            console.log(Memb.id)
+            var token = jwt.sign(data, Token)
+            console.log(token + "86")
+            const log = {
+                auth: token,
+                pass: flag
+            }
+            res.json(log)
         }
-        console.log(data)
-        console.log(Memb.id)
-        var token = jwt.sign(data, Token)
-        console.log(token)
-        const log={
-            auth:token,
-            pass:flag
-        }
-        res.json(log)
     } catch (error) {
         console.log(error)
         res.status(500).json(error)
     }
 })
-router.post("/avatar",fetchuser, async (req,res)=>{
-    try { 
+router.post("/avatar", fetchuser, async (req, res) => {
+    try {
         const ent = await Member.findById(req.user.id)
-        if(ent){
+        if (ent) {
             console.log("reached line number= 100")
-            const img =await req.file.filename;
+            const img = await req.file.filename;
             console.log(img);
-            const newent = await Member.findByIdAndUpdate(req.user.id,{$set:{avatar:img}});
+            const newent = await Member.findByIdAndUpdate(req.user.id, { $set: { avatar: img } });
             const entj = await Member.findById(req.user.id)
             res.json(entj)
         }
-        else{
+        else {
             res.send("no such user exist")
         }
     } catch (error) {
@@ -113,27 +112,27 @@ router.post("/avatar",fetchuser, async (req,res)=>{
     }
 })
 
-router.get("/fetchblogger",fetchuser,async (req,res)=>{
+router.get("/fetchblogger", fetchuser, async (req, res) => {
     try {
-        const Blogger= await Member.findById(req.user.id).select("-password")
+        const Blogger = await Member.findById(req.user.id).select("-password")
         res.json(Blogger)
     } catch (error) {
         console.log(error)
-        res.status(500).send("Internal server error")  
+        res.status(500).send("Internal server error")
     }
 })
 
-router.put("/about",fetchuser,async(req,res)=>{
+router.put("/about", fetchuser, async (req, res) => {
     try {
-        const {about} = req.body
-        const newent = await Member.findByIdAndUpdate(req.user.id,{$set:{about:about}});
+        const { about } = req.body
+        const newent = await Member.findByIdAndUpdate(req.user.id, { $set: { about: about } });
         console.log(newent)
-        const ent= await Member.findById(req.user.id)
+        const ent = await Member.findById(req.user.id)
         res.json(ent)
     } catch (error) {
         console.log(error)
-        res.status(500).send("Internal server error")    
+        res.status(500).send("Internal server error")
     }
 })
 
-module.exports = router       
+module.exports = router

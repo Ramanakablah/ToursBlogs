@@ -11,8 +11,8 @@ const Form = () => {
                         <p>
                       Join community and be a part of fun : 
                         </p>
-                      <div className="link">
-                      <Link to="/Signup"> Sign up </Link>
+                      <div>
+                      <Link to="/Signup" className="link"> Sign up </Link>
                       </div>
                     </div>
                 </div>

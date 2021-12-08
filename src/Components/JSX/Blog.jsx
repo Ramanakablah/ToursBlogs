@@ -7,16 +7,12 @@ import Newcontext from '../Context/Createcontext'
 const Blog = () => {
   const ref = useRef(null)
   const refclose = useRef(null)
-  const [Blog, setBlog] = useState([])
   const [edits, setedits] = useState({id:"",uexperience:"",ulocation:"",uplacename:""})
   const context = useContext(Newcontext)
   const { UsersBlog, Blogofuser, editblog } = context
 
   const handleclick = () => {
     UsersBlog();
-    console.log(Blogofuser)
-    setBlog(Blogofuser) 
-    console.log(Blog)
   }
   const updation = (currentblog) => {
     ref.current.click()
@@ -45,8 +41,8 @@ const Blog = () => {
         </div>
         <h1 className="mx-2 my-4">Blogs</h1>
         <Link to="/add" className="btn btn-primary mx-2"> Add New &#x2B; </Link>
-        <hr />
         <button className="btn btn-primary" onClick={handleclick}> See Your Blogs </button>
+        <hr />
 
         <button type="button" className="btn btn-primary d-none" ref={ref} data-bs-toggle="modal" data-bs-target="#exampleModal">
           Launch static backdrop modal
@@ -84,7 +80,7 @@ const Blog = () => {
         </div>
 
         <div className="container">
-          {Blog?.map((blog) => {
+          {Blogofuser?.map((blog) => {
             return <div key={blog._id}>
               <Entry blog={blog} updation={updation} />
             </div>

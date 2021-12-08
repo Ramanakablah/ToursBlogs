@@ -22,7 +22,7 @@ const Newblog = () => {
                 <h3>Your Blog </h3>
                 <img src="https://cdn.pixabay.com/photo/2013/07/12/12/23/nib-145703_960_720.png" alt="" /> 
                 </div>
-                <form action="/add" method="POST">
+                <form>
                     <div className="mb-3">
                         <label htmlFor="name" className="form-label">Place you visited:</label>
                         <input type="text" className="form-control" id="name" aria-describedby="emailHelp" name="name" onChange={onchange}/>

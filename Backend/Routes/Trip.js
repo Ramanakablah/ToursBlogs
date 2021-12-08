@@ -43,7 +43,7 @@ router.put("/update/:id",fetchuser,async(req,res)=>{
            if(blog.user.toString()!==req.user.id)
            {res.send("Not Allowed")}
             
-           blog= await Blog.findByIdAndUpdate(req.params.id,{$set:newblog},{new:true})
+           blog = await Blog.findByIdAndUpdate(req.params.id,{$set:newblog},{new:true})
            console.log(blog)
            res.json(blog)
     } catch (error) {

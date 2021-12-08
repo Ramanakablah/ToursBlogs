@@ -3,7 +3,9 @@
     flex-direction: column-reverse;
     height: 100vh;
     width: 100vw;
-    background-image: url("https://cdn.pixabay.com/photo/2020/02/05/15/47/natural-4821583_960_720.png");
+    background-image: url("https://cdn.pixabay.com/photo/2020/02/05/15/47/natural-4821583_960_720.png"),linear-gradient(180deg,rgba(104, 104, 255, 0.664),#008080);
+    background-blend-mode: hard-light;
+    /* rgb(0, 101, 126) */
     background-position: bottom;
     background-size: cover;
     background-repeat: no-repeat;

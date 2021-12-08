@@ -1,0 +1,14 @@
+.page1,.page2,.page3{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.page1{
+   background-color: yellow; 
+}
+.page2{
+   background-color: red;
+}
+.page3{
+    background-color: blue;
+}

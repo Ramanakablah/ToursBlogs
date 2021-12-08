@@ -1,5 +1,6 @@
 .IntroBody{
-    background-image: url('https://cdn.pixabay.com/photo/2021/10/31/10/23/nature-6756974_960_720.png');
+    background-image: url('https://cdn.pixabay.com/photo/2021/10/31/10/23/nature-6756974_960_720.png'),linear-gradient(180deg,white ,rgb(149, 149, 252),rgb(202, 131, 0));
+    background-blend-mode:luminosity;
     background-repeat: no-repeat;
     background-position: bottom;
     background-size: cover;

@@ -4,7 +4,7 @@ import Newcontext from './Createcontext'
 const Blogcontext = (props) => {
   const url = "http://localhost:5000"
   const [allow, setallow] = useState(false)
-  const [tempauth, settempauth] = useState("")
+  const [tempauth, settempauth] = useState("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjFhMjVkM2IxYzc2NDUyNWYzNGFhOTNjIn0sImlhdCI6MTYzODAzMDY1MX0.aTNT-OF9KTvCQqK6QKKboXxA7pqDsbxOOSk5XGBd5fA")
   const [Blogofuser, setBlogofuser] = useState([])
 
   const signin = async (name, email, password, mob) => {
@@ -70,7 +70,8 @@ const Blogcontext = (props) => {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
-        "auth-token": tempauth      },
+        "auth-token": tempauth
+      },
       body: JSON.stringify({ name, place, blog })
     });
     const entry = await response.json()
@@ -83,7 +84,8 @@ const Blogcontext = (props) => {
       method: "GET",
       headers: {
         'Content-Type': 'application/json',
-        "auth-token": tempauth      },
+        "auth-token": tempauth
+      },
       body: JSON.stringify()
     });
     const entry = await response.json()
@@ -95,10 +97,11 @@ const Blogcontext = (props) => {
       method: "PUT",
       headers: {
         'Content-Type': 'application/json',
-        "auth-token": tempauth      },
+        "auth-token": tempauth
+      },
       body: JSON.stringify({ placename, experience, location })
     });
-    console.log(placename+" "+experience+" "+location)
+    console.log(placename + " " + experience + " " + location)
     const json = await response.json()
     console.log(json)
     let newblog = JSON.parse(JSON.stringify(Blogofuser))
@@ -108,24 +111,24 @@ const Blogcontext = (props) => {
     }
     setBlogofuser(newblog);
   }
-  
-  const deleteblog= async(id)=>{
+
+  const deleteblog = async (id) => {
     const response = await fetch(`${url}/trip/delete/${id}`, {
       method: "DELETE",
       headers: {
         'Content-Type': 'application/json',
-        "auth-token": tempauth     },
+        "auth-token": tempauth
+      },
       body: JSON.stringify()
     });
     const res = await response.json()
     console.log(res)
-    const newblog = Blogofuser.filter((Blogofuser)=>{return Blogofuser._id!== id})
-    console.log(newblog)
+    const newblog = Blogofuser.filter((Blogofuser) => { return Blogofuser._id !== id })
     setBlogofuser(newblog)
   }
 
   return (
-    <Newcontext.Provider value={{  Blogofuser,signin, login, Pass, avatar, about, addblog, UsersBlog, editblog, deleteblog }}>
+    <Newcontext.Provider value={{ Blogofuser, signin, login, Pass, avatar, about, addblog, UsersBlog, editblog, deleteblog, allow }}>
       {props.children}
     </Newcontext.Provider>
   )

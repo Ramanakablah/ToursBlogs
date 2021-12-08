@@ -15,8 +15,8 @@
     width: 70%;
     padding: 0px 30px;
     color: white;
-    font-size: 25px;
-    font-weight: bold;
+    font-size: 2rem;
+    font-weight: 400;
 }
 .Sheet a{
     font-size: 30px;
@@ -25,4 +25,16 @@
 #Button{
 border: none;
 border-radius: 20px;
+}
+.link{
+    text-decoration: none;
+    color: white;
+    background-color: red;
+    padding: 7px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+.link:hover{
+    color: red;
+    background-color: white;
 }
