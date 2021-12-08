@@ -23,13 +23,13 @@ const Blog = () => {
   }
   const savechanges=()=>{
     refclose.current.click()
-    console.log(edits)
     editblog(edits.id,edits.uplacename,edits.uexperience,edits.ulocation)
   }
 
   return (
     <>
       <div className="Head">
+        <div className="container">
         <div className="User">
           <div>
             <h2>Welcome</h2>
@@ -38,6 +38,7 @@ const Blog = () => {
           <div className="useravatar">
             <img src="https://cdn.pixabay.com/photo/2013/05/11/08/28/sunset-110305_640.jpg" alt="" />
           </div>
+        </div>
         </div>
         <h1 className="mx-2 my-4">Blogs</h1>
         <Link to="/add" className="btn btn-primary mx-2"> Add New &#x2B; </Link>

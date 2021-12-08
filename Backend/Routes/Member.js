@@ -77,10 +77,7 @@ router.post("/login", [
                     id: Memb.id
                 }
             }
-            console.log(data)
-            console.log(Memb.id)
             var token = jwt.sign(data, Token)
-            console.log(token + "86")
             const log = {
                 auth: token,
                 pass: flag
@@ -125,9 +122,8 @@ router.get("/fetchblogger", fetchuser, async (req, res) => {
 router.put("/about", fetchuser, async (req, res) => {
     try {
         const { about } = req.body
-        const newent = await Member.findByIdAndUpdate(req.user.id, { $set: { about: about } });
-        console.log(newent)
-        const ent = await Member.findById(req.user.id)
+        let newent = await Member.findByIdAndUpdate(req.user.id, { $set: { about: about } });
+         newent = await Member.findById(req.user.id)
         res.json(ent)
     } catch (error) {
         console.log(error)

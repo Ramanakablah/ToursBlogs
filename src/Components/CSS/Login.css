@@ -26,6 +26,11 @@
     animation-duration: 7s;
     animation-iteration-count: infinite;
 }
+.LoginBody .warning{
+    text-decoration: none;
+    font-size: 10px;
+    color: red;
+}
 .helpers{
     padding: 7px;
 }

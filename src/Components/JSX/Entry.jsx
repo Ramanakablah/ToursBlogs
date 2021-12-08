@@ -8,7 +8,6 @@ const Entry = (props) => {
     const { deleteblog } = context
 
     const Trash = () => {
-        console.log("clicked")
         deleteblog(blog._id)
     }
 

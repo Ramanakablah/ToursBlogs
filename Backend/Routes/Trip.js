@@ -12,8 +12,7 @@ router.post("/enter",fetchuser,upload.single("image"), async (req,res)=>{
             place:req.body.place,
             blog:req.body.blog   
         })
-          console.log(Blogent)
-          res.json("Uploaded kindly confirm")
+          res.send("ok")
 
     } catch (error) {
         console.log(error)
@@ -44,7 +43,6 @@ router.put("/update/:id",fetchuser,async(req,res)=>{
            {res.send("Not Allowed")}
             
            blog = await Blog.findByIdAndUpdate(req.params.id,{$set:newblog},{new:true})
-           console.log(blog)
            res.json(blog)
     } catch (error) {
         console.log(error)
@@ -59,7 +57,6 @@ router.delete("/delete/:id",fetchuser,async (req,res)=>{
         if(flag.user.toString() === req.user.id){
             flag = await Blog.findByIdAndDelete(req.params.id)
             res.send("deleted")
-            console.log("deleted")
         }
         else{
             res.send("No Such Blog exist in Database")  

@@ -22,7 +22,6 @@ const Profile = () => {
         if(abouts.length !==0)
         {
             e.preventDefault();
-            console.log(abouts)
             about(abouts)
             navigate("/")
         }

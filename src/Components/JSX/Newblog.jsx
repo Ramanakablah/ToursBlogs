@@ -12,7 +12,6 @@ const Newblog = () => {
    }
    const handleclick=(e)=>{
        e.preventDefault();
-       console.log(BlogData)
        addblog(BlogData.name,BlogData.place,BlogData.blog)
    }
     return (
