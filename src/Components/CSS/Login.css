@@ -4,12 +4,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: repeating-linear-gradient(345deg,#001eff,white) ,url("https://cdn.pixabay.com/photo/2017/06/15/01/50/whale-2403863_960_720.png");
-    background-blend-mode: multiply;
-    background-repeat: no-repeat;
-    background-position-y: bottom;
-    background-position-x: center;
-    background-size: 100%,90%,10%,15%,10%;
 }
 .Login{
     width: 70%;
@@ -18,4 +12,29 @@
 #Label{
     font-size: 17px;
     font-weight: bold;
+}
+.Boat{
+    height: 100%;
+    width: 100%;
+}
+.loginface{
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    height: min;
+}
+.form-helpers{
+    display: none;
+}
+@media only screen and (max-width:1000px)
+{
+.form-helpers{
+    display: block;
+}
+.loginface{
+    display: none;
+}
+.Login{
+    width: 100%;
+}
 }

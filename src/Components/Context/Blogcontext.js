@@ -24,7 +24,8 @@ const Blogcontext = (props) => {
     const response = await fetch(`${url}/join/avatar`, {
       method: 'POST',
       headers: {
-        'auth-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjFhMjVkM2IxYzc2NDUyNWYzNGFhOTNjIn0sImlhdCI6MTYzODAzMDY1MX0.aTNT-OF9KTvCQqK6QKKboXxA7pqDsbxOOSk5XGBd5fA"
+        'Content-Type': 'application/json',
+        'auth-token': tempauth
       }, body: JSON.stringify()
     });
     const answer = await response.json()
@@ -43,6 +44,8 @@ const Blogcontext = (props) => {
     console.log(answer)
     if (answer.pass) {
       setallow(true)
+      settempauth(answer.auth)
+      console.log(tempauth)
     }
   }
 
@@ -51,7 +54,7 @@ const Blogcontext = (props) => {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjFhMjVkM2IxYzc2NDUyNWYzNGFhOTNjIn0sImlhdCI6MTYzODAzMDY1MX0.aTNT-OF9KTvCQqK6QKKboXxA7pqDsbxOOSk5XGBd5fA"
+        "auth-token": tempauth
       },
       body: JSON.stringify({ about })
     });
@@ -67,8 +70,7 @@ const Blogcontext = (props) => {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
-        "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjFhMjVkM2IxYzc2NDUyNWYzNGFhOTNjIn0sImlhdCI6MTYzODAzMDY1MX0.aTNT-OF9KTvCQqK6QKKboXxA7pqDsbxOOSk5XGBd5fA"
-      },
+        "auth-token": tempauth      },
       body: JSON.stringify({ name, place, blog })
     });
     const entry = await response.json()
@@ -81,8 +83,7 @@ const Blogcontext = (props) => {
       method: "GET",
       headers: {
         'Content-Type': 'application/json',
-        "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjFhMjVkM2IxYzc2NDUyNWYzNGFhOTNjIn0sImlhdCI6MTYzODAzMDY1MX0.aTNT-OF9KTvCQqK6QKKboXxA7pqDsbxOOSk5XGBd5fA"
-      },
+        "auth-token": tempauth      },
       body: JSON.stringify()
     });
     const entry = await response.json()
@@ -94,8 +95,7 @@ const Blogcontext = (props) => {
       method: "PUT",
       headers: {
         'Content-Type': 'application/json',
-        "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjFhMjVkM2IxYzc2NDUyNWYzNGFhOTNjIn0sImlhdCI6MTYzODAzMDY1MX0.aTNT-OF9KTvCQqK6QKKboXxA7pqDsbxOOSk5XGBd5fA"
-      },
+        "auth-token": tempauth      },
       body: JSON.stringify({ placename, experience, location })
     });
     console.log(placename+" "+experience+" "+location)
@@ -114,8 +114,7 @@ const Blogcontext = (props) => {
       method: "DELETE",
       headers: {
         'Content-Type': 'application/json',
-        "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjFhMjVkM2IxYzc2NDUyNWYzNGFhOTNjIn0sImlhdCI6MTYzODAzMDY1MX0.aTNT-OF9KTvCQqK6QKKboXxA7pqDsbxOOSk5XGBd5fA"
-      },
+        "auth-token": tempauth     },
       body: JSON.stringify()
     });
     const res = await response.json()

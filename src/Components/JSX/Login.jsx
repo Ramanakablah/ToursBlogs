@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react'
+import { Link } from 'react-router-dom'
 // import { useNavigate } from "react-router-dom"
 import Newcontext from '../Context/Createcontext'
 import "../CSS/Login.css"
@@ -33,6 +34,17 @@ const Login = () => {
                         </div>
                         <button className="btn btn-primary" onClick={loging}>Submit</button>
                     </form>
+                    <div className="form-helpers">
+                        <Link className="buttontext" to="/signup">Create New User</Link>
+                    </div>
+                </div>
+                <div className="loginface">
+                    <div>
+                    <img src="https://cdn.pixabay.com/photo/2013/07/13/11/54/boat-158936_640.png" alt="Sailing boat" className="Boat"/>
+                    </div>
+                    <div className="helpers">
+                        <Link className="buttontext" to="/signup">Create New User</Link>
+                    </div>
                 </div>
             </div>
         </>

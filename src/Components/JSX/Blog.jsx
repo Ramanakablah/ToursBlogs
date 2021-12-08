@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useRef } from 'react'
+import React, { useState, useContext, useRef } from 'react'
 import Entry from '../JSX/Entry'
 import "../CSS/Blog.css"
 import { Link } from 'react-router-dom'
@@ -12,14 +12,10 @@ const Blog = () => {
   const context = useContext(Newcontext)
   const { UsersBlog, Blogofuser, editblog } = context
 
-  useEffect(() => {
-    UsersBlog()
-  }, [])
-
   const handleclick = () => {
     UsersBlog();
     console.log(Blogofuser)
-    setBlog(Blogofuser)
+    setBlog(Blogofuser) 
     console.log(Blog)
   }
   const updation = (currentblog) => {
