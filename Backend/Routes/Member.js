@@ -1,11 +1,12 @@
 const express = require("express")
+const app = express();
 const router = express.Router()
+const Token = "HaayeMeriDiwaliKhatamHoGyi"
 const { body, validationResult } = require("express-validator")
 const Member = require("../Modals/Member")
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const fetchuser = require("../Fetchuser/Fetchuser")
-const Token = "HaayeMeriDiwaliKhatamHoGyi"
 
 
 
@@ -24,7 +25,7 @@ router.post("/auth", [
         const Exist = await Member.findOne({ email })
 
         if (Exist) {
-            res.send("User already Exist")
+            res.json("User already Exist")
         }
         else {
             const salt = bcrypt.genSaltSync(10)
@@ -63,12 +64,12 @@ router.post("/login", [
         const { password, email } = req.body
         const Memb = await Member.findOne({ email })
         if (!Memb) {
-            res.send("Enter correct credentils")
+            res.json("Enter correct credentils")
         }
         const Passerverif = await bcrypt.compare(password, Memb.password)
 
         if (!Passerverif) {
-            res.status(400).send("Access-Denied")
+            res.status(400).json("Access-Denied")
         }
         else {
             flag = true;
@@ -89,23 +90,19 @@ router.post("/login", [
         res.status(500).json(error)
     }
 })
+
 router.post("/avatar", fetchuser, async (req, res) => {
     try {
-        const ent = await Member.findById(req.user.id)
-        if (ent) {
-            console.log("reached line number= 100")
-            const img = await req.file.filename;
-            console.log(img);
-            const newent = await Member.findByIdAndUpdate(req.user.id, { $set: { avatar: img } });
-            const entj = await Member.findById(req.user.id)
-            res.json(entj)
-        }
-        else {
-            res.send("no such user exist")
+        const Memb = await Member.findById(req.user.id)
+        if (Memb) {
+            const img = await req.files.dp;
+            console.log(img)
+            await img.mv("public/pimg/" + img.name)
+            const UMemb = await Member.findByIdAndUpdate(req.user.id, { $set: { avatar: img.name } }, { new: true })
+            res.json(UMemb)
         }
     } catch (error) {
         console.log(error)
-        res.status(500).send("Internal server error")
     }
 })
 
@@ -123,8 +120,8 @@ router.put("/about", fetchuser, async (req, res) => {
     try {
         const { about } = req.body
         let newent = await Member.findByIdAndUpdate(req.user.id, { $set: { about: about } });
-         newent = await Member.findById(req.user.id)
-        res.json(ent)
+        newent = await Member.findById(req.user.id)
+        res.json(newent)
     } catch (error) {
         console.log(error)
         res.status(500).send("Internal server error")

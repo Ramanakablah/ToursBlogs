@@ -1,14 +1,130 @@
-.page1,.page2,.page3{
-    display:flex;
+.template{
+    width: 100vw;
+    height: 170px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+    background-image: url('../images/background.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Corinthia', cursive;
+    text-shadow: 0px 3px red;
+}
+.top{
+    font-weight: 900;
+    font-size: 3.7rem;
+
+}
+.bottom{
+    font-size: 4rem;
+}
+.road{
+    width: 100vw;
+    background-image: url("../images/Back.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.first,.second,.third{
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  
+}
+
+.Map-image,.text{
+    width: 50%;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
-.page1{
-   background-color: yellow; 
+.Map-image{
+    min-width: 280px;
 }
-.page2{
-   background-color: red;
+.frame1 , .frame2, .frame3{
+    height: 500px;
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    background-color: 	#F0FFFF;
+    position: relative;
+    border-radius: 5px;
+    opacity:1;
 }
-.page3{
-    background-color: blue;
+.frame1 , .frame2, .frame3 p {
+    font-family: 'Amatic SC', cursive;
+    font-size: 20px;
+    font-weight: 600;
+}
+.text{
+    display: flex;
+    flex-direction: column;
+    padding: 0px 20px;
+    /* width: 100%; */
+}
+.Map-head{
+    font-size: 4rem;
+    font-weight: 700;
+    font-family: 'Domine', serif;
+    color: brown;
+    opacity: 0.9;
+}
+
+.Map-image img{
+    height: 80%;
+    width: 95%;
+    margin: auto;
+    border: solid 1px black;
+}
+.slide-right-animation{
+    animation-name: slideR;
+    animation-duration: 4s;
+    animation-iteration-count: 1;
+}
+@keyframes slideR{
+    0%{
+        transform: translateX(-150%);
+    }
+    to {
+        transform: translateX(0%);
+    }
+}
+.slide-left-animation{
+    animation-name: slideL;
+    animation-duration: 4s;
+    animation-iteration-count: 1;
+}
+@keyframes slideL{
+    0%{
+        transform: translateX(150%);
+    }
+    to {
+        transform: translateX(0%);
+    }
+}
+@media only screen and (max-width: 810px){
+
+    .frame1 , .frame2, .frame3{
+     height: 300px;
+     width: 250px;
+    }
+    .Map-head{
+        font-size: 2.5rem;
+    }
+    .text{
+        padding: 0px 7px;
+        width: 100%;
+    }
+    .second{
+        flex-direction: column-reverse;
+    }
+
 }

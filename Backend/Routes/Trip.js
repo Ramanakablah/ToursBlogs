@@ -4,7 +4,7 @@ const Blog = require("../Modals/Blog")
 const upload = require("../Multer/Upload")
 const fetchuser = require("../Fetchuser/Fetchuser")
 
-router.post("/enter",fetchuser,upload.single("image"), async (req,res)=>{
+router.post("/enter",fetchuser, async (req,res)=>{
     try {  
           const Blogent= await Blog.create({
             user:req.user.id,

@@ -8,23 +8,28 @@
     width: 100vw; 
     margin: 0px;  
     display: flex;
-    padding: 10px 0px;
-    flex-direction: column-reverse; 
 }
 .sun{
     clip-path: circle(50% at 50% 50%);
     background: rgb(255,255,255);
     background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(247,246,72,0.9658119658119658) 100%);
-    position: absolute;
-    top: 20%;
-    left: 40%;
+    position: relative;
+    display: inline-block;
     height: 100px;
     width: 100px;
+}
+.sun-wrap{
+    position: relative;
+    z-index: 2;
+    display: inline;
+    top: 100px;
 }
 .Intro{
     width: 50%;
     color: white;
     padding: 0px 10px;
+    display: flex;
+    flex-direction: column-reverse;
 }
 .head{
     font-size: 2.3rem;   
@@ -34,5 +39,34 @@
     text-decoration: none;
 }
 .IntroText{
- font-weight: bold;
+    font-weight: bold;
+}
+.move{
+    position: relative;
+}
+.slide-animation{
+    animation-name: slide;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+}
+.cactus{
+    width: 50%;
+    display: flex;
+    overflow: hidden;
+    flex-direction: column-reverse;
+}
+.cactus img{
+   position: relative;
+   height: 250px;
+   width: 150px;
+   bottom: -30px;
+   right: -60%;
+}
+@keyframes slide{
+    0%{
+        transform: translateX(-150%);
+    }
+    to {
+        transform: translateX(0);
+    }
 }

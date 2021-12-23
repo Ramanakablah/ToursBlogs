@@ -1,11 +1,52 @@
-.useravatar img{
-    height: 100px;
-    width: 100px;
+.User{
+position:relative;
+top: -125px;
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+.User img{
+    height: 250px;
+    width: 250px;
     border-radius: 50%;
+    border: solid 7px wheat;
+}
+.User p{
+    font-family: 'Corinthia', cursive;
+}
+.Edit-update{
+    width: 100%;
+}
+.carousel-image{
+    height: 400px;
+}
+.background-pic{
+    width: 100%;
+    height: 300px;
+    z-index: -1;
 }
 .User{
     display: flex;
-    justify-content: space-between;
-    padding: 5px 10px;
-    background-image: linear-gradient(90deg, white,yellow ,orange,red);
+    justify-content: center;
+}
+.Head{
+    background-color: white;
+    border-radius: 20px;
+}
+@media only screen and (max-width: 500px) {
+.User img{
+    height: 150px;
+    width: 150px; 
+}
+.User{
+    top: -75px;
+}
+.carousel-image{
+    height: 250px;
+}
+}
+@media only screen and (max-width:300px){
+    .carousel-image{
+        height: 200px;
+    }
 }

@@ -11,12 +11,15 @@ import Profile from "./Components/JSX/Profile "
 import Signup from "./Components/JSX/Signup"
 import Blogcontext from "./Components/Context/Blogcontext";
 import Newblog from "./Components/JSX/Newblog";
-
+import OTP from "./Components/JSX/OTP";
+import Naksha from "./Components/JSX/Naksha";
+import ParallaxProvider from "react-scroll-parallax/cjs/components/ParallaxProvider";
 
 function App() {
   return (
     <>
     <Blogcontext>
+      <ParallaxProvider>
     <Router>
       <Navbar/>
       <Routes>
@@ -26,8 +29,11 @@ function App() {
       <Route path="/profile" element={<Profile/>} />
       <Route path="/blog" element={<Blog/>} />
       <Route path="/add" element={<Newblog/>} />
+      <Route path="/authentication" element={<OTP/>} />
+      <Route path="/map" element={<Naksha/>} />
       </Routes>
     </Router>
+      </ParallaxProvider>
     </Blogcontext>
     </>
   );

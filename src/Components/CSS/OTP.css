@@ -1,0 +1,23 @@
+.input-otp{
+    min-height: 45.1rem;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.input-otp h1{
+  color: rgb(0, 189, 252);
+  font-size: 49px;
+  font-weight: 700;
+  margin: 20px 0px;
+}
+.verif-otp{
+   border: none;
+   border-bottom: solid 1px black;
+   margin: 20px 0px;
+   text-align: center;
+}
+.verif-otp:focus{
+    outline: none;
+}

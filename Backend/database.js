@@ -1,10 +1,16 @@
 const mongoose= require("mongoose")
-const MongoUri= "mongodb://localhost:27017/Tour?readPreference=primary&appname=MongoDB%20Compass&ssl=false"
+const dotenv= require("dotenv")
 
-const ConnectionSetup =()=>{
-    mongoose.connect(MongoUri,()=>{
-        console.log("Connected")
-    })
+dotenv.config()
+
+const MongoUri=process.env.MONGO_URI
+
+const ConnectionSetup = async ()=>{
+ mongoose.connect(MongoUri).then(()=>{
+     console.log("connection successfull")
+ }).catch((Error)=>{
+     console.log(Error)
+ })
 }
 
 module.exports=ConnectionSetup

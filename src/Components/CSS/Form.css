@@ -38,3 +38,19 @@ border-radius: 20px;
     color: red;
     background-color: white;
 }
+.move{
+    position: relative;
+}
+.slide-animation{
+    animation-name: slide;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+}
+@keyframes slide{
+    0%{
+        transform: translateX(-150%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}

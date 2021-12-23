@@ -6,7 +6,7 @@ import Newcontext from '../Context/Createcontext'
 const Navbar = () => {
     const [shownav, setshownav] = useState("none")
     const context = useContext(Newcontext)
-    const {allow}= context
+    const {allow ,setflip }= context
     const handleNavbar=()=>{
         if(shownav==="none")
         {
@@ -27,11 +27,12 @@ const Navbar = () => {
                {allow && <li className="listitem"><Link to="/blog"> <span className="List-text">Blogs</span></Link></li>}
                 <li className="listitem"><Link to="/about"> <span className="List-text">Terms and conditions</span></Link></li>
                 <li className="listitem"><Link to="/map"> <span className="List-text"> Map</span></Link></li>
-                <li className="listitem"><Link to="/signup"> <span className="List-text">Join Us</span></Link></li>
+                <li className="listitem"><Link to="/signup"> <span className="List-text" onClick={()=>{setflip(true)}}>Join Us</span></Link></li>
+                <li className="listitem"><Link to="/flip"> <span className="List-text" >Flip - Page</span></Link></li>
             </ul>
             <div className="Userbutton">
                 <div>
-                    <button className="btn btn-primary mx-2 my-2 py-1"><Link to="/login">Login</Link></button>
+                    <button className="btn btn-primary mx-2 my-2 py-1"><Link to="/">Login</Link></button>
                 </div>
                 <div className="Hamburger" onClick={handleNavbar}>
                     <i className="fa fa-bars"></i>
@@ -68,7 +69,7 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="ham-bottom">
-                <Link to="/login" className="ham-item">Login</Link>
+                <Link to="/" className="ham-item">Login</Link>
             </div>
         </div>
     </>

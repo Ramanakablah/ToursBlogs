@@ -4,8 +4,12 @@ import Newcontext from './Createcontext'
 const Blogcontext = (props) => {
   const url = "http://localhost:5000"
   const [allow, setallow] = useState(false)
-  const [tempauth, settempauth] = useState("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjFhMjVkM2IxYzc2NDUyNWYzNGFhOTNjIn0sImlhdCI6MTYzODAzMDY1MX0.aTNT-OF9KTvCQqK6QKKboXxA7pqDsbxOOSk5XGBd5fA")
+  const [tempauth, settempauth] = useState("")
+  const [member, setmember] = useState([])
   const [Blogofuser, setBlogofuser] = useState([])
+  const [onetp, setonetp] = useState(0)
+  const [flip, setflip] = useState(false)
+
 
   const signin = async (name, email, password, mob) => {
     const response = await fetch(`${url}/join/auth`, {
@@ -17,18 +21,6 @@ const Blogcontext = (props) => {
     });
     const answer = await response.json()
     settempauth(answer)
-  }
-
-  const avatar = async () => {
-    const response = await fetch(`${url}/join/avatar`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'auth-token': tempauth
-      }, body: JSON.stringify()
-    });
-    const answer = await response.json()
-    console.log(answer)
   }
 
   const login = async (email, password) => {
@@ -43,12 +35,11 @@ const Blogcontext = (props) => {
     if (answer.pass) {
       setallow(true)
       settempauth(answer.auth)
-      console.log(tempauth)
     }
   }
 
   const about = async (about) => {
-     await fetch(`${url}/join/about`, {
+    await fetch(`${url}/join/about`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -56,8 +47,32 @@ const Blogcontext = (props) => {
       },
       body: JSON.stringify({ about })
     });
-    
+
   }
+
+  const avatar = async(form)=>{
+    const respo =  await fetch(`http://localhost:5000/join/avatar`, {
+      method: 'POST',
+      mode:"cors",
+      headers: {
+        "auth-token" : tempauth
+      }, body:form
+  });
+  console.log(respo);
+  }
+  const User = async () => {
+    const response = await fetch(`${url}/join/fetchblogger`, {
+      method: 'GET',
+      headers: {
+        "auth-token": tempauth
+      },
+      body: JSON.stringify()
+    });
+    const ent = await response.json()
+    setmember(ent)
+
+  }
+
   const Pass = () => {
     return allow;
   }
@@ -76,19 +91,22 @@ const Blogcontext = (props) => {
   }
 
   const UsersBlog = async () => {
-    const response = await fetch(`${url}/trip/fetchblog`, {
-      method: "GET",
-      headers: {
-        'Content-Type': 'application/json',
-        "auth-token": tempauth
-      },
-      body: JSON.stringify()
-    });
-    const entry = await response.json()
-    setBlogofuser(entry)
+    if (tempauth) {
+
+      const response = await fetch(`${url}/trip/fetchblog`, {
+        method: "GET",
+        headers: {
+          'Content-Type': 'application/json',
+          "auth-token": tempauth
+        },
+        body: JSON.stringify()
+      });
+      const entry = await response.json()
+      setBlogofuser(entry)
+    }
   }
   const editblog = async (id, placename, experience, location) => {
-   await fetch(`${url}/trip/update/${id}`, {
+    await fetch(`${url}/trip/update/${id}`, {
       method: "PUT",
       headers: {
         'Content-Type': 'application/json',
@@ -96,7 +114,6 @@ const Blogcontext = (props) => {
       },
       body: JSON.stringify({ placename, experience, location })
     });
-    console.log(placename + " " + experience + " " + location)
     let newblog = JSON.parse(JSON.stringify(Blogofuser))
     for (let index = 0; index < newblog.length; index++) {
       const element = newblog[index];
@@ -106,7 +123,7 @@ const Blogcontext = (props) => {
   }
 
   const deleteblog = async (id) => {
-     await fetch(`${url}/trip/delete/${id}`, {
+    await fetch(`${url}/trip/delete/${id}`, {
       method: "DELETE",
       headers: {
         'Content-Type': 'application/json',
@@ -118,8 +135,9 @@ const Blogcontext = (props) => {
     setBlogofuser(newblog)
   }
 
+
   return (
-    <Newcontext.Provider value={{ Blogofuser, signin, login, Pass, avatar, about, addblog, UsersBlog, editblog, deleteblog, allow }}>
+    <Newcontext.Provider value={{ Blogofuser, signin, login, Pass, flip, setflip, about, addblog, UsersBlog, editblog, deleteblog, allow, onetp, setonetp, member, User, tempauth, avatar}}>
       {props.children}
     </Newcontext.Provider>
   )

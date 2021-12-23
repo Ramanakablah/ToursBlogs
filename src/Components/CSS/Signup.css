@@ -1,15 +1,19 @@
-.Body{
+.signup{
     width: 100vw;
     height: 41.5em;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     background-image:url("https://cdn.pixabay.com/photo/2020/02/05/15/47/natural-4821583_960_720.png"),linear-gradient(180deg,rgba(104, 104, 255, 0.664),#008080);
     background-blend-mode: luminosity;
     background-position: bottom;
     background-size: cover;
     background-repeat: no-repeat;
+}
+.Body{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 .SignupBody{
     width: 70%;
@@ -30,3 +34,21 @@
     font-size: 15px;
     display: inline;
 }
+#slide-top {
+	animation: slide-top 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@keyframes slide-top {
+    0% {
+      transform: translateY(-100vh);
+    }
+    50% {
+      transform: translateY(0vh);
+    }
+    65% {
+      transform: translateY(-3vh);
+    }
+    100% {
+      transform: translateY(0vh);
+    }
+  }

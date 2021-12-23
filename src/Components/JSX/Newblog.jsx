@@ -3,7 +3,7 @@ import Newcontext from '../Context/Createcontext'
 import "../CSS/Newblog.css"
 
 const Newblog = () => {
-   
+  const [confirm, setconfirm] = useState(false)
   const [BlogData, setBlogData] = useState({name:"",place:"",blog:""})
   const context = useContext(Newcontext)
   const {addblog}= context
@@ -12,7 +12,18 @@ const Newblog = () => {
    }
    const handleclick=(e)=>{
        e.preventDefault();
-       addblog(BlogData.name,BlogData.place,BlogData.blog)
+       if(setBlogData.name.length!==0)
+       {if(setBlogData.place.length!==0)
+        {if(setBlogData.blog.length!==0)
+            {
+                addblog(BlogData.name,BlogData.place,BlogData.blog)
+                setconfirm(true)
+                setTimeout(() => {
+                    setconfirm(false)
+                }, 10000);
+            }
+        }
+       }
    }
     return (
         <div className="Bod">
@@ -39,6 +50,7 @@ const Newblog = () => {
                          <input type="file" />
                      </div>
                      <button className="btn btn-light mx-2 my-2" onClick={handleclick}> ADD &#x2B; </button>
+                    { confirm && <div className="conformation"> Added successfully </div>}
                 </form>
             </div>
         </div>
