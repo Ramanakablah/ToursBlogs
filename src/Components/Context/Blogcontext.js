@@ -6,11 +6,10 @@ const Blogcontext = (props) => {
   const [allow, setallow] = useState(false)
   const [tempauth, settempauth] = useState("")
   const [member, setmember] = useState([])
-  const [Blogofuser, setBlogofuser] = useState([])
+  const [Blogofuser, setBlogofuser] = useState(sessionStorage.Blogo?JSON.parse(sessionStorage.Blogo):[])
   const [onetp, setonetp] = useState(0)
   const [flip, setflip] = useState(false)
-
-
+  
   const signin = async (name, email, password, mob) => {
     const response = await fetch(`${url}/join/auth`, {
       method: 'POST',
@@ -22,6 +21,7 @@ const Blogcontext = (props) => {
     const answer = await response.json()
     settempauth(answer)
   }
+
 
   const login = async (email, password) => {
     const response = await fetch(`${url}/join/login`, {
@@ -35,82 +35,90 @@ const Blogcontext = (props) => {
     if (answer.pass) {
       setallow(true)
       settempauth(answer.auth)
+      sessionStorage.setItem("tempauth",answer.auth)
     }
   }
+
 
   const about = async (about) => {
     await fetch(`${url}/join/about`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        "auth-token": tempauth
+        "auth-token": sessionStorage.getItem("tempauth")
       },
       body: JSON.stringify({ about })
     });
 
   }
 
+
   const avatar = async(form)=>{
     const respo =  await fetch(`http://localhost:5000/join/avatar`, {
       method: 'POST',
       mode:"cors",
       headers: {
-        "auth-token" : tempauth
+        "auth-token" :sessionStorage.tempauth
       }, body:form
   });
   console.log(respo);
   }
+
+
   const User = async () => {
     const response = await fetch(`${url}/join/fetchblogger`, {
       method: 'GET',
       headers: {
-        "auth-token": tempauth
+        "auth-token": sessionStorage.getItem("tempauth")
       },
       body: JSON.stringify()
     });
     const ent = await response.json()
-    setmember(ent)
-
-  }
+    sessionStorage.setItem("member", JSON.stringify(ent))
+    setmember(JSON.parse(sessionStorage.member))
+}
 
   const Pass = () => {
     return allow;
   }
 
-  const addblog = async (name, place, blog) => {
+  const addblog = async (formdata) => {
+    console.log(sessionStorage.tempauth)
     const response = await fetch(`${url}/trip/enter`, {
       method: "POST",
+      mode:"cors",
       headers: {
-        'Content-Type': 'application/json',
-        "auth-token": tempauth
+        "auth-token": sessionStorage.tempauth
       },
-      body: JSON.stringify({ name, place, blog })
+      body:formdata
     });
-    const entry = await response.json()
-    setBlogofuser(Blogofuser.concat(entry))
+    console.log(response)
   }
+
 
   const UsersBlog = async () => {
     if (tempauth) {
-
       const response = await fetch(`${url}/trip/fetchblog`, {
         method: "GET",
         headers: {
           'Content-Type': 'application/json',
-          "auth-token": tempauth
+          "auth-token": sessionStorage.getItem("tempauth")
         },
         body: JSON.stringify()
       });
-      const entry = await response.json()
-      setBlogofuser(entry)
+       const list = await response.json()
+       sessionStorage.setItem("Blogo",JSON.stringify(list))
+       setBlogofuser(JSON.parse(sessionStorage.Blogo))
     }
   }
+
+
   const editblog = async (id, placename, experience, location) => {
     await fetch(`${url}/trip/update/${id}`, {
-      method: "PUT",
+      method: "PUT", 
       headers: {
         'Content-Type': 'application/json',
-        "auth-token": tempauth
+        "auth-token": sessionStorage.getItem("tempauth")
       },
       body: JSON.stringify({ placename, experience, location })
     });
@@ -119,20 +127,25 @@ const Blogcontext = (props) => {
       const element = newblog[index];
       if (element._id === id) { newblog[index].name = placename; newblog[index].place = location; newblog[index].blog = experience; console.log(newblog[index]); break; }
     }
-    setBlogofuser(newblog);
+    sessionStorage.removeItem(`Blogo`)
+    sessionStorage.setItem(`Blogo`,JSON.stringify(newblog))
+    setBlogofuser(JSON.parse(sessionStorage.Blogo))
   }
+
 
   const deleteblog = async (id) => {
     await fetch(`${url}/trip/delete/${id}`, {
       method: "DELETE",
       headers: {
         'Content-Type': 'application/json',
-        "auth-token": tempauth
+        "auth-token":sessionStorage.getItem("tempauth")
       },
       body: JSON.stringify()
     });
     const newblog = Blogofuser.filter((Blogofuser) => { return Blogofuser._id !== id })
-    setBlogofuser(newblog)
+    sessionStorage.removeItem("Blogo")
+    sessionStorage.setItem("Blogo", JSON.stringify(newblog))
+    setBlogofuser(JSON.parse(sessionStorage.Blogo))
   }
 
 

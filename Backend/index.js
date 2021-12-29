@@ -1,6 +1,6 @@
 const express= require("express")
 const ConnectionSetup = require("./database")
-const cors= require("cors")
+const cors = require("cors")
 const fileUpload = require('express-fileupload')
 const app=express()
 const Port=5000

@@ -24,7 +24,7 @@ const Entry = (props) => {
                             <i className="far fa-trash-alt" title="Delete" ></i>
                         </button>
                     </div>
-                    <div>{blog.place}</div>
+                    <div className='Place'>{blog.place}</div>
                     <hr />
                     <div className="Exp">
                         {blog.blog}
@@ -32,7 +32,7 @@ const Entry = (props) => {
                     <small className="text-muted">{blog.dateupload}</small>
                 </div>
                 <div className="image">
-                    <img src="https://cdn.pixabay.com/photo/2012/03/01/00/21/bridge-19513_960_720.jpg" alt="sample" />
+                    <img src={`http://localhost:5000/pimg/${blog.image}`} alt="sample" />
                 </div>
             </div>
         </>

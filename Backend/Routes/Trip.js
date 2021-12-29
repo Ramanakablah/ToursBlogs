@@ -2,18 +2,21 @@ const express = require("express")
 const router = express.Router();
 const Blog = require("../Modals/Blog")
 const upload = require("../Multer/Upload")
+const cors = require("cors")
 const fetchuser = require("../Fetchuser/Fetchuser")
 
 router.post("/enter",fetchuser, async (req,res)=>{
-    try {  
+    try {   const img = await req.files.image
+           console.log(img)
+           img.mv("public/pimg/" + img.name)
           const Blogent= await Blog.create({
             user:req.user.id,
             name:req.body.name,
             place:req.body.place,
-            blog:req.body.blog   
+            blog:req.body.blog,
+            image:img.name
         })
-          res.send("ok")
-
+          res.json(Blogent)
     } catch (error) {
         console.log(error)
         res.status(500).send("Internal server Error")

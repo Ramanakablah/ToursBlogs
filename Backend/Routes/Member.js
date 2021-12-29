@@ -97,7 +97,7 @@ router.post("/avatar", fetchuser, async (req, res) => {
         if (Memb) {
             const img = await req.files.dp;
             console.log(img)
-            await img.mv("public/pimg/" + img.name)
+            await img.mv("public/pimg/" +img.name)
             const UMemb = await Member.findByIdAndUpdate(req.user.id, { $set: { avatar: img.name } }, { new: true })
             res.json(UMemb)
         }

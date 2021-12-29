@@ -8,7 +8,7 @@ const Login = () => {
     const navigate = useNavigate();
     const [logincred, setlogincred] = useState({ email: "", password: "" })
     const context = useContext(Newcontext)
-    const { login, Pass ,User,setflip } = context
+    const { login, Pass, setflip, User } = context
     const onchange = (e) => {
         setlogincred({ ...logincred, [e.target.name]: e.target.value })
     }
@@ -17,9 +17,9 @@ const Login = () => {
             if (logincred.password.length !== 0) {
                 e.preventDefault();
                 await login(logincred.email, logincred.password);
-                if (Pass()) 
-                { navigate("/blog")
-                  User()
+                if (await Pass()) {
+                    User();
+                    navigate("/blog")
                 }
             }
         }
@@ -36,12 +36,12 @@ const Login = () => {
                         </div>
                         <div className="mb-3">
                             <label htmlFor="exampleInputPassword1" className="form-label" id="Label2">Password</label>
-                            <input type="password" className="form-control" id="exampleInputPassword1" autoComplete="current-password" name="password" onChange={onchange} disabled={logincred.email.length===0} />
+                            <input type="password" className="form-control" id="exampleInputPassword1" autoComplete="current-password" name="password" onChange={onchange} disabled={logincred.email.length === 0} />
                         </div>
-                        <button className="btn btn-primary" onClick={loging} disabled={logincred.password.length===0}><i className="fas fa-sign-in-alt mx-1"></i> Login</button>
+                        <button className="btn btn-primary" onClick={loging} disabled={logincred.password.length === 0}><i className="fas fa-sign-in-alt mx-1"></i> Login</button>
                     </form>
                     <div className="form-helpers">
-                        <Link className="btn btn-primary my-4" to="/signup" onClick={()=>{setflip(true)}} >Create New User</Link>
+                        <Link className="btn btn-primary my-4" to="/signup" onClick={() => { setflip(true) }} >Create New User</Link>
                     </div>
                 </div>
                 <div className="loginface">
