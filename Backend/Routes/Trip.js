@@ -1,7 +1,6 @@
 const express = require("express")
 const router = express.Router();
 const Blog = require("../Modals/Blog")
-const upload = require("../Multer/Upload")
 const cors = require("cors")
 const fetchuser = require("../Fetchuser/Fetchuser")
 
