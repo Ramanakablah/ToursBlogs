@@ -2,7 +2,7 @@ import React,{useState,useContext} from 'react'
 import Newcontext from '../Context/Createcontext'
 import "../CSS/Newblog.css"
 
-const Newblog = () => {
+const Newblog = (props) => {
   const [confirm, setconfirm] = useState(false)
   const [file, setfile] = useState(null)
   const fd = new FormData();
@@ -33,6 +33,7 @@ const Newblog = () => {
                 setTimeout(() => {
                     setconfirm(false)
                 }, 10000);
+                props.permit()
             }
         }
        }

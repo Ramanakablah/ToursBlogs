@@ -8,18 +8,28 @@ const Login = () => {
     const navigate = useNavigate();
     const [logincred, setlogincred] = useState({ email: "", password: "" })
     const context = useContext(Newcontext)
-    const { login, Pass, setflip, User } = context
+    const { login, setflip, User, SigninWarning, setSigninWarning } = context
     const onchange = (e) => {
         setlogincred({ ...logincred, [e.target.name]: e.target.value })
     }
+
+    if(sessionStorage.loggedin === "true"){
+        window.location.href="/setting"
+    } 
+
     const loging = async (e) => {
         if (logincred.email.length !== 0) {
             if (logincred.password.length !== 0) {
                 e.preventDefault();
-                await login(logincred.email, logincred.password);
-                if (await Pass()) {
+              const Pass =  await login(logincred.email, logincred.password);
+                if (Pass) {
                     User();
                     navigate("/blog")
+                }
+                else{
+                    setTimeout(() => {
+                        setSigninWarning(true)
+                    },4000);
                 }
             }
         }
@@ -29,6 +39,7 @@ const Login = () => {
             <div className="LoginBody">
                 <div className="Login">
                     <h1>Login:</h1>
+                    {!SigninWarning && <div className="Warning">Entered Credentials are Wrong. Try with Correct one</div>}
                     <form>
                         <div className="mb-3">
                             <label htmlFor="exampleInputEmail1" className="form-label" id="Label1">Email address</label>

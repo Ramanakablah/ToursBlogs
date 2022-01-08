@@ -1,27 +1,39 @@
-import React, { useState, useContext, useRef,useEffect } from 'react'
+import React, { useState, useContext, useRef, useEffect } from 'react'
 import Entry from '../JSX/Entry'
 import "../CSS/Blog.css"
-import { Link } from 'react-router-dom'
 import Newcontext from '../Context/Createcontext'
+import Newblog from './Newblog'
 
 const Blog = () => {
   document.body.style.backgroundColor = " #FFF9E4"
   const ref = useRef(null)
   const refclose = useRef(null)
+  const [Addnew, setAddnew] = useState(false)
   const [edits, setedits] = useState({ id: "", uexperience: "", ulocation: "", uplacename: "" })
   const context = useContext(Newcontext)
-  const { editblog , UsersBlog , member, Blogofuser, User} = context
+  const { editblog, UsersBlog, member, Blogofuser, User } = context
+
+  if(sessionStorage.loggedin !== "true"){
+    window.location.href="/"
+} 
 
   useEffect(() => {
-      UsersBlog();
+    UsersBlog();
   }, [UsersBlog])
 
-  window.onload=()=>{
-    console.log("We are here on call of reload")
+  window.onload = () => {
     User()
     UsersBlog()
   }
-  
+  document.body.style.backgroundImage = "linear-gradient(90deg,#e33f84,#681fb0,#34189c,#4836e6,#70c7ec)"
+  const Add = () => {
+    if (Addnew) {
+      setAddnew(false)
+    }
+    else {
+      setAddnew(true)
+    }
+  }
   const updation = (currentblog) => {
     ref.current.click()
     setedits({ id: currentblog._id, uexperience: currentblog.blog, uplacename: currentblog.name, ulocation: currentblog.place })
@@ -40,7 +52,7 @@ const Blog = () => {
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title" id="staticBackdropLabel">Modal title</h5>
+              <h5 className="modal-title" id="staticBackdropLabel">Edit Blog</h5>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
@@ -51,7 +63,7 @@ const Blog = () => {
                 </div>
                 <div className="mb-3">
                   <label htmlFor="location" className="form-label">Location</label>
-                  <input type="text" className="form-control" id="location" aria-describedby="emailHelp" value={edits.ulocation} onChange={onchange} name="ulocation" />
+                  <input type="text" className="form-control" id="location" value={edits.ulocation} onChange={onchange} name="ulocation" />
                 </div>
                 <div className="mb-3">
                   <div>
@@ -90,26 +102,32 @@ const Blog = () => {
           </div>
         </div>
       </div>
-      <div className="Head">
-        <div>
-          <h1 className="mx-2 my-4">Blogs</h1>
-          <Link to="/add" className="btn btn-primary mx-2"> Add New &#x2B; </Link>
-          <hr />
-          <button type="button" className="btn btn-primary d-none" ref={ref} data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Launch static backdrop modal
-          </button>
-        </div>
-        <div className="User">
-          <img src={`http://localhost:5000/pimg/${member.avatar}`} alt="" />
-          <p>{member.about}</p>
-        </div>
-      </div>
-      <div className="BlogList">
-        {Blogofuser?.map((blog) => {
-              return <div key={blog._id} >
-            <Entry blog={blog} updation={updation} />
+      <div className="blogbody">
+        <div className="Heads container">
+          <div>
+            <div className="User">
+              <img src={`http://localhost:5000/pimg/${member.avatar}`} alt="" />
+            </div>
+            <h1 className="mx-2 my-4">Hey {member.name}</h1>
+            <div>What's new today</div>
+            {!Addnew && <button to="/add" className="btn btn-primary mx-2 bloop" onClick={Add}> Add New &#x2B; </button>}
+            <hr />
+            <p>{member.about}</p>
+            <button type="button" className="btn btn-primary d-none" ref={ref} data-bs-toggle="modal" data-bs-target="#exampleModal">
+              Launch static backdrop modal
+            </button>
           </div>
-        })}
+          <div className="Add">
+            {Addnew && <Newblog permit={Add} />}
+          </div>
+        </div>
+        <div className="BlogList">
+          {Blogofuser?.map((blog) => {
+            return <div key={blog._id} >
+              <Entry blog={blog} updation={updation} />
+            </div>
+          })}
+        </div>
       </div>
     </>
   )

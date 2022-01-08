@@ -1,7 +1,9 @@
 .nav{
     color: white;
-    background-color: #281641;
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgb(28, 28, 131) 39%, rgb(30, 41, 109) 100%);
     display: flex;
+    /* opacity: 0.8; */
     width: 100vw;
     position: sticky;
     top: 0px;
@@ -11,7 +13,10 @@
     z-index: 10;
 }
 .Nav-head{
+    font-size: 1.6rem;
+    font-weight:900;
     padding: 10px;
+    font-family: 'Dancing Script', cursive;
 }
 .nav .list{
     display: flex;
@@ -30,7 +35,7 @@
 }
 .listitem:hover{
     font-weight: 400;
-    background-color: hsl(265, 61%, 21%);
+    background-color: hsl(265, 100%, 37%);
     cursor: pointer;
 }
 .Userbutton{
@@ -95,7 +100,28 @@
  padding: 10px;
  border-radius: 7px;
 }
-@media only screen and (max-width:800px)
+.icon-globe{
+    margin: 4px;
+}
+
+.icon{
+    margin: 3px;
+    animation-name: Cog;
+    animation-duration: 9s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes Cog {
+    from{
+        transform: rotateZ(0deg);
+    }
+    to{
+        transform: rotateZ(360deg);
+    }
+}
+
+@media only screen and (max-width:820px)
 {
     .List-text{
     display: none;

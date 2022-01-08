@@ -2,13 +2,19 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    border-bottom: solid 2px orange;
+    border: solid 2px white;
+    border-radius: 10px;
+    background-color: rgba(255,255,255, 0.25);
+    margin-bottom: 7px;
 }
 .image img{
     height: 300px;
     width: 300px;
     margin: 7px;
     position: relative;
+}
+.Exp{
+    font-size: 20px;
 }
 .Entry{
     min-width: 280px;

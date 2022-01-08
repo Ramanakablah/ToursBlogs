@@ -13,7 +13,7 @@ const Entry = (props) => {
 
     return (
         <>
-            <div className="BlogBody my-2">
+            <div className="BlogBody my-2 container">
                 <div className="Entry">
                     <div>
                         <h3>{blog.name}</h3>
@@ -32,7 +32,7 @@ const Entry = (props) => {
                     <small className="text-muted">{blog.dateupload}</small>
                 </div>
                 <div className="image">
-                    <img src={`http://localhost:5000/pimg/${blog.image}`} alt="sample" />
+                    <img src={`http://localhost:5000/bimg/${blog.image}`} alt="sample" />
                 </div>
             </div>
         </>

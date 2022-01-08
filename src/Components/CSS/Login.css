@@ -39,6 +39,10 @@
 .helpers{
     padding: 7px;
 }
+.Warning{
+    font-weight: 700;
+    font-size: 20px;
+}
 .Login .btn{
     border: solid 2px white;
 }

@@ -1,0 +1,26 @@
+.Screen{
+    height: 46rem;
+    width: 100vw;
+    background-color: black;
+}
+.Star{
+    height: 4px;
+    position: absolute;
+    width: 4px;
+    animation-name: sparkle;
+    animation-iteration-count: infinite;
+    animation-duration: 2s;
+    background-color: white;
+    border-radius: 50%;
+}
+@keyframes sparkle {
+    0% {
+        box-shadow: 0px 0px 0px 0px white;
+    }
+    50%{
+        box-shadow: 0px 0px 20px 4px white;
+    }
+    100%{
+        box-shadow: 0px 0px 0px 0px white;
+    }
+}

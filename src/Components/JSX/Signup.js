@@ -1,46 +1,37 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useRef } from 'react'
 import "../CSS/Signup.css"
-import { useNavigate } from 'react-router'
 import Newcontext from "../Context/Createcontext"
-import emailjs from 'emailjs-com';
+import OTP from './OTP';
 
 const Signup = () => {
-    const navigate = useNavigate();
+    const ref = useRef(null)
+    const refclose = useRef(null)
     const context = useContext(Newcontext);
-    const { signin,onetp,setonetp,flip} = context;
-    let signinuser={};
+    const { signin, setonetp, flip, SigninWarning } = context;
+    const [OTPverification, setOTPverification] = useState(false)
     const [Signform, setSignform] = useState({ name: "", mob: "", email: "", password: "" });
 
     const onchange = (e) => {
         setSignform({ ...Signform, [e.target.name]: e.target.value })
     }
-    
+    const Shinsengumi = () => {
+        refclose.current.click();
+        setOTPverification(false)
+    }
 
     const Submit = (e) => {
         e.preventDefault()
         const a = 100000, b = 999999;
         const c = Math.ceil(a + (Math.random()) * b);
-        console.log(onetp)
-        signinuser={
-            name:Signform.name,
-            email:Signform.email,
-            otp:c
-        }
         setonetp(c)
-        console.log(signinuser)
-        emailjs.send("service_mtz89cf","template_zd1yq7c",signinuser,"user_AOLeNmrFyKSLf0lOilzWc")
-        .then((result) => {
-            console.log(result.text);
-        }, (error) => {
-            console.log(error.text);
-        });
-        navigate("/authentication")
-
+        console.log(c)
         if (Signform.name.length !== 0) {
             if (Signform.email.length !== 0) {
                 if (Signform.password.length !== 0) {
                     if (Signform.mob.length !== 0) {
-                        signin(Signform.name, Signform.email, Signform.password, Signform.mob);
+                        signin(Signform.name, Signform.email, Signform.password, Signform.mob, c);
+                        setOTPverification(true)
+                        ref.current.click();
                     }
                 }
             }
@@ -50,28 +41,48 @@ const Signup = () => {
     return (
         <>
             <div className='signup'>
-                <div className="Body" id={flip?'slide-top':null}>
+                {!OTPverification && <div className="Body" id={flip ? 'slide-top' : null}>
                     <h1 style={{ color: "white" }}>Sign up :</h1>
                     <div className="SignupBody">
                         <form>
                             <div className="mb-3">
                                 <label htmlFor="exampleInputName" className="form-label" id="Label">Name</label>
-                                <input type="text" className="form-control max-2" id="exampleInputName" name="name" onChange={onchange} minLength="3" placeholder="*"/>
+                                <input type="text" className="form-control max-2" id="exampleInputName" name="name" onChange={onchange} minLength="3" placeholder="*" />
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="exampleInputEmail1" className="form-label" id="Label">Email address</label>
-                                <input type="email" className="form-control max-2" disabled={Signform.name.length===0} id="exampleInputEmail1" name="email" onChange={onchange} minLength="7" placeholder="*"/>
+                                <input type="email" className="form-control max-2" disabled={Signform.name.length === 0} id="exampleInputEmail1" name="email" onChange={onchange} minLength="7" placeholder="*" />
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="exampleInputContact" className="form-label" id="Label">Contact</label>
-                                <input type="number" className="form-control max-2"  disabled={Signform.email.length===0}  id="exampleInputContact" name="mob" onChange={onchange} minLength="8" placeholder="*"/>
+                                <input type="number" className="form-control max-2" disabled={Signform.email.length === 0} id="exampleInputContact" name="mob" onChange={onchange} minLength="8" placeholder="*" />
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="exampleInputPassword" className="form-label" id="Label">Password</label>
-                                <input type="password" className="form-control max-2"  disabled={Signform.mob.length===0}  id="exampleInputPassword" name="password" onChange={onchange} minLength="4 " placeholder="*"/>
+                                <input type="password" className="form-control max-2" disabled={Signform.mob.length === 0} id="exampleInputPassword" name="password" onChange={onchange} minLength="4 " placeholder="*" />
                             </div>
-                            <button className="btn btn-primary"  disabled={Signform.password.length===0}  onClick={Submit}>Submit</button>
+                            <button className="btn btn-primary" disabled={Signform.password.length === 0} onClick={Submit}>Submit</button>
                         </form>
+                    </div>
+                </div>}
+            </div>
+
+            <button type="button" ref={ref} className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style={{ display: "none" }}>
+            </button>
+
+            <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="staticBackdropLabel">Modal title</h5>
+                            {SigninWarning && <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={Shinsengumi}></button>}
+                        </div>
+                        <div className="modal-body">
+                            {SigninWarning ? "User with these credentials already exists" : <OTP verify={Shinsengumi} />}
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" ref={refclose} style={{ display: "none" }}></button>
+                        </div>
                     </div>
                 </div>
             </div>

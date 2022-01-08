@@ -11,14 +11,18 @@ const Profile = () => {
   const context = useContext(Newcontext)
   const [abouts, setabouts] = useState("")
   const [warn, setwarn] = useState(false)
-  const {about,tempauth,avatar}= context
+  const {about,avatar}= context
+
+
+     if(sessionStorage.signin !== "true"){
+         window.location.href="/signup"
+     }   
 
     const onchange=(e)=>{
     aboutyou = e.target.value; 
-    setabouts(aboutyou) 
-    console.log(tempauth)          
+    setabouts(aboutyou)          
     }
-
+     
     const onclick= async (e)=>{
         fd.append("dp",file)
         e.preventDefault();

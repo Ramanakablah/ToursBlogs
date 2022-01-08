@@ -3,18 +3,24 @@ import { useNavigate } from 'react-router-dom'
 import '../CSS/OTP.css'
 import Newcontext from '../Context/Createcontext'
 
-const OTP = () => {
+const OTP = (props) => {
     const navigate = useNavigate()
     const [usersotp, setusersotp] = useState(10)
     const context = useContext(Newcontext)
-    const {onetp  } = context
+    const {onetp} = context
     const check=()=>{
         try {
             if(usersotp === `${onetp}`)
             { 
             console.log("inside check")
+            props.verify()
+            if(props.for === "settings"){
+                props.done()
+            }
+            else{
             navigate("/profile")
-            } 
+            }
+        } 
             else {
             }  
         } catch (error) {

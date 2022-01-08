@@ -1,0 +1,78 @@
+.Options {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    height: auto;
+    margin:8px 20px;
+    background-color: white;
+    align-items: center;
+    min-width: 200px;
+    padding: 10px;
+    border-radius: 5px;
+    justify-content: space-between;
+}
+.Options:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.head{
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.profile:hover{
+    background-color: #7fa0f4;
+    border: solid 3px white;
+}
+
+.delete-account:hover{
+    background-color: 	#FF0000;
+    border: solid 3px white;
+}
+.logout:hover{
+    background-color: 	yellow;
+    border: solid 3px white;
+}
+
+.setting-holder{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.start img{
+    height: 192px;
+    width: 200px;
+    border-radius: 50%;
+}
+.logout-button{
+    background: none;
+    border: none;
+    font-size: 20px;
+    font-weight: 500;
+}
+.editform{
+    width: 100%;
+}
+@media only screen and (max-width:1000px)
+{
+    .Options{
+        width: 43.5%;
+    }
+    .setting-holder{
+        flex-direction: column;
+    }
+}
+@media only screen and (max-width:800px)
+{
+    .Options{
+        width: 80%;
+    }
+}
+@media only screen and (max-width:300px)
+{
+    .start img{
+        height: 180px;
+        width: 180px;
+    }
+}

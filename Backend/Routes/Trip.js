@@ -1,13 +1,13 @@
 const express = require("express")
 const router = express.Router();
 const Blog = require("../Modals/Blog")
-const cors = require("cors")
 const fetchuser = require("../Fetchuser/Fetchuser")
+
 
 router.post("/enter",fetchuser, async (req,res)=>{
     try {   const img = await req.files.image
            console.log(img)
-           img.mv("public/pimg/" + img.name)
+           img.mv("public/bimg/" + img.name)
           const Blogent= await Blog.create({
             user:req.user.id,
             name:req.body.name,

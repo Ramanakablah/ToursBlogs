@@ -7,12 +7,14 @@ const fetchuser = (req, res, next) => {
     if (!token){
         res.json(" Access Denied ") 
     }
-        const data = jwt.verify(token,Token)
-        req.user = data.user;
-        next();
+     else{
+         const data = jwt.verify(token,Token)
+         req.user = data.user;
+         next();
+        }
     } catch (error) {
         console.log(error)
-        res.status(400).json(error)
+        res.status(500).send('internal Server Error')
     }
 }
 module.exports = fetchuser
