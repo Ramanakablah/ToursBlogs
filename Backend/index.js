@@ -3,7 +3,7 @@ const ConnectionSetup = require("./database")
 const cors = require("cors")
 const fileUpload = require('express-fileupload')
 const app=express()
-const Port=5000
+const Port=8000
 
 app.use(express.json())
 app.use(cors())

@@ -63,7 +63,7 @@ const Settings = () => {
                 <div className="setting-holder container" >
                     {!show && !otpverifprogress && <div className="Options profile" onClick={OTPforedit}>
                         <div className="start">
-                            <img src={`http://localhost:5000/pimg/${member.avatar}`} alt="" />
+                            <img src={`http://localhost:8000/pimg/${member.avatar}`} alt="" />
                         </div>
                         <div className="middle">
                             <h3> Profile </h3>
@@ -76,7 +76,7 @@ const Settings = () => {
                     </div>}
                     {!show && !otpverifprogress && <div className="Options logout" onClick={handlelogout}>
                         <div className="start">
-                            <img src={`http://localhost:5000/pimg/${member.avatar}`} alt="" />
+                            <img src={`http://localhost:8000/pimg/${member.avatar}`} alt="" />
                         </div>
                         <div className="middle">
                             <h3> Log Out </h3>

@@ -4,7 +4,7 @@ import emailjs from 'emailjs-com';
 
 
 const Blogcontext = (props) => {
-  const url = "http://localhost:5000"
+  const url = "http://localhost:8000"
   const [allow, setallow] = useState(sessionStorage.loggedin ? sessionStorage.loggedin : false)
   const [tempauth, settempauth] = useState(sessionStorage.tempauth ? sessionStorage.tempauth : "")
   const [member, setmember] = useState([])
@@ -50,9 +50,11 @@ const Blogcontext = (props) => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ email, password })
+      body: JSON.stringify({email, password})
     });
+    console.log(response)
     const answer = await response.json()
+    console.log(answer)
     if (answer.pass) {
       setallow(true)
       settempauth(answer.reply)
