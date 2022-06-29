@@ -39,7 +39,7 @@ const Login = () => {
             <div className="LoginBody">
                 <div className="Login">
                     <h1>Login:</h1>
-                    {!SigninWarning && <div className="Warning">Entered Credentials are Wrong. Try with Correct one</div>}
+                    {SigninWarning === "Loginwarn" && <div className="Warning">Entered Credentials are Wrong. Try with Correct one</div>}
                     <form>
                         <div className="mb-3">
                             <label htmlFor="exampleInputEmail1" className="form-label" id="Label1">Email address</label>
@@ -56,9 +56,7 @@ const Login = () => {
                     </div>
                 </div>
                 <div className="loginface">
-                    <div className="login-boat">
                         <img src="https://cdn.pixabay.com/photo/2013/07/13/11/54/boat-158936_640.png" alt="Sailing boat" className="Boat" />
-                    </div>
                 </div>
             </div>
         </>

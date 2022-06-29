@@ -4,7 +4,7 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    background-image: url("../images/beach.png");
+    background: url("https://img.freepik.com/free-vector/night-landscape-with-aurora-borealis-sky-river-mountains-horizon-vector-cartoon-illustration-green-pink-northern-lights-stars-winter-sky-nordic-rocks_107791-8129.jpg?t=st=1656316496~exp=1656317096~hmac=bc6696faea7c2c73d29b9118555d4495c8212c8ad72059791b4eb450f95348da&w=1380https://img.freepik.com/free-vector/night-landscape-with-aurora-borealis-sky-river-mountains-horizon-vector-cartoon-illustration-green-pink-northern-lights-stars-winter-sky-nordic-rocks_107791-8129.jpg?t=st=1656316496~exp=1656317096~hmac=bc6696faea7c2c73d29b9118555d4495c8212c8ad72059791b4eb450f95348da&w=1380"), rgb(255, 255, 255,0.2);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -17,6 +17,10 @@
     font-size: 17px;
     font-weight: bold;
 }
+.Login h1 , .Login label{
+    color: white;
+}
+
 .login-boat{
     border: none;
     width: 100%;
@@ -70,6 +74,7 @@
 {
 .loginface{
     /* display: none; */
+    display: none;
     position: absolute;
     z-index: -1;
     width: 100%;
@@ -79,9 +84,7 @@
 .Login{
     width: 100%;
 }
-.LoginBody{
-    display: inline;
-}
+
 .login-boat{
     width: 100%;
 }

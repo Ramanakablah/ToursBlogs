@@ -14,6 +14,7 @@ const Signup = () => {
     const onchange = (e) => {
         setSignform({ ...Signform, [e.target.name]: e.target.value })
     }
+
     const Shinsengumi = () => {
         refclose.current.click();
         setOTPverification(false)
@@ -75,10 +76,10 @@ const Signup = () => {
                     <div className="modal-content">
                         <div className="modal-header">
                             <h5 className="modal-title" id="staticBackdropLabel">Modal title</h5>
-                            {SigninWarning && <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={Shinsengumi}></button>}
+                            {SigninWarning!=="Signinwarn" && <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={Shinsengumi}></button>}
                         </div>
                         <div className="modal-body">
-                            {SigninWarning ? "User with these credentials already exists" : <OTP verify={Shinsengumi} />}
+                            {SigninWarning==="Checking" ? "Checking . . ." : SigninWarning==="Signinpass" ? <OTP verify={Shinsengumi} /> : "User with these credentials already exists" }
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" ref={refclose} style={{ display: "none" }}></button>

@@ -2,15 +2,15 @@ import React, { useState } from 'react'
 import Newcontext from './Createcontext'
 import emailjs from 'emailjs-com';
 
-
+// https://backendforyourtourdiary.herokuapp.com/pimg/1656512833443G-Wallpaper.jpg
 const Blogcontext = (props) => {
-  const url = "http://localhost:8000"
+  const url = "https://backendforyourtourdiary.herokuapp.com"
   const [allow, setallow] = useState(sessionStorage.loggedin ? sessionStorage.loggedin : false)
   const [tempauth, settempauth] = useState(sessionStorage.tempauth ? sessionStorage.tempauth : "")
   const [member, setmember] = useState([])
   const [Blogofuser, setBlogofuser] = useState(sessionStorage.Blogo ? JSON.parse(sessionStorage.Blogo) : [])
   const [onetp, setonetp] = useState(0)
-  const [SigninWarning, setSigninWarning] = useState(true)
+  const [SigninWarning, setSigninWarning] = useState("Checking")
   const [flip, setflip] = useState(false)
 
 
@@ -24,8 +24,9 @@ const Blogcontext = (props) => {
       body: JSON.stringify({ name, email, password, mob })
     });
     const res = await response.json();
+    console.log(res);
     if (res.pass) {
-      setSigninWarning(false)
+      setSigninWarning("Signinpass")
       const signinuser = {
         name: name,
         email: email,
@@ -40,6 +41,9 @@ const Blogcontext = (props) => {
         });
       settempauth(res.mssg)
       sessionStorage.setItem("signin","true")
+    }
+    else{
+      setSigninWarning("")
     }
   }
 
@@ -63,7 +67,7 @@ const Blogcontext = (props) => {
       User();
     }
     if (!answer.pass) {
-      setSigninWarning(false)
+      setSigninWarning("Loginwarn")
     }
     return answer.pass;
   }
@@ -85,7 +89,7 @@ const Blogcontext = (props) => {
 
 
   const avatar = async (form) => {
-    const respo = await fetch(`http://localhost:5000/join/avatar`, {
+    const respo = await fetch(`${url}/join/avatar`, {
       method: 'POST',
       mode: "cors",
       headers: {

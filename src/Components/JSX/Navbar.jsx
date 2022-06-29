@@ -71,7 +71,7 @@ const Navbar = () => {
             </div>
             <div className="ham-bottom">
                 {!allow &&  <Link to="/" className="ham-item">Login</Link>}
-                {allow &&  <Link to="/setting" className="ham-item"><i className="fas fa-cog icon"></i> Settings</Link>}
+                {allow &&  <Link to="/setting" className="ham-item"><i className="fa-solid fa-gear"></i> Settings</Link>}
             </div>
         </div>
     </>

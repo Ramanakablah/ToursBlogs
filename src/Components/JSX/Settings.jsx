@@ -14,7 +14,6 @@ const Settings = () => {
     const refclose = useRef(null)
     const navigate = useNavigate()
     const [otpverifprogress, setotpverifprogress] = useState(false)
-    document.body.style.backgroundImage = "linear-gradient(90deg,#e33f84,#681fb0,#34189c,#4836e6,#70c7ec)"
 
 
     if(sessionStorage.loggedin !== "true"){
@@ -63,7 +62,7 @@ const Settings = () => {
                 <div className="setting-holder container" >
                     {!show && !otpverifprogress && <div className="Options profile" onClick={OTPforedit}>
                         <div className="start">
-                            <img src={`http://localhost:8000/pimg/${member.avatar}`} alt="" />
+                            <img src={`https://backendforyourtourdiary.herokuapp.com/pimg/${member.avatar}`} alt="" />
                         </div>
                         <div className="middle">
                             <h3> Profile </h3>
@@ -76,7 +75,7 @@ const Settings = () => {
                     </div>}
                     {!show && !otpverifprogress && <div className="Options logout" onClick={handlelogout}>
                         <div className="start">
-                            <img src={`http://localhost:8000/pimg/${member.avatar}`} alt="" />
+                            <img src={`https://backendforyourtourdiary.herokuapp.com/pimg/${member.avatar}`} alt="" />
                         </div>
                         <div className="middle">
                             <h3> Log Out </h3>

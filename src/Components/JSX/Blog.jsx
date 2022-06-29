@@ -106,7 +106,7 @@ const Blog = () => {
         <div className="Heads container">
           <div>
             <div className="User">
-              <img src={`http://localhost:8000/pimg/${member.avatar}`} alt="" />
+              <img src={`https://backendforyourtourdiary.herokuapp.com/pimg/${member.avatar}`} alt="" />
             </div>
             <h1 className="mx-2 my-4">Hey {member.name}</h1>
             <div>What's new today</div>

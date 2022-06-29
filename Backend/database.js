@@ -3,7 +3,7 @@ const dotenv= require("dotenv")
 
 dotenv.config()
 
-const MongoUri=process.env.MONGO_URI
+const MongoUri="mongodb+srv://Ramanakablah:Raman1311@cluster0.uzijl.mongodb.net/Your-Tour-Diary?retryWrites=true&w=majority"
 
 const ConnectionSetup = async ()=>{
  mongoose.connect(MongoUri).then(()=>{
